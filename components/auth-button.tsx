@@ -8,10 +8,10 @@ function AuthButton() {
 
   return (
     <div>
-      {auth?.currentUser &&
+      {!!auth?.currentUser &&
         <div>
           <div>{auth.currentUser.email}</div>
-          <div>Logout</div>
+          <div onClick={() => auth.logout()}>Logout</div>
         </div>
       }
       {!auth?.currentUser &&
