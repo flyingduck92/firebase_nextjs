@@ -1,21 +1,15 @@
 import type { Metadata } from "next"
-import { Geist, Geist_Mono, Inter } from "next/font/google"
+import { Poppins } from "next/font/google"
 import "./globals.css"
 import Link from 'next/link'
 import { cn } from "@/lib/utils"
 import { AuthContextProvider } from '@/context/auth'
 import AuthButton from '@/components/auth-button'
+import { HomeIcon } from 'lucide-react'
 
-const inter = Inter({ subsets: ['latin'], variable: '--font-sans' })
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-})
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+const poppins = Poppins({
+  subsets: ['latin'],
+  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"]
 })
 
 export const metadata: Metadata = {
@@ -27,14 +21,22 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
-      className={cn("h-full", "antialiased", geistSans.variable, geistMono.variable, "font-sans", inter.variable)}
+      className={cn("h-full", "antialiased", poppins.className, "font-sans")}
     >
       <body className="min-h-full flex flex-col">
         <AuthContextProvider>
           <nav className="bg-sky-950 text-white p-5 h-24 flex items-center justify-between">
-            <Link href="/">Fire Home</Link>
-            <ul>
-              <AuthButton />
+            <Link className="text-3xl uppercase tracking-widest flex gap-2 items-center" href="/">
+              <HomeIcon />
+              <span>Fire Home</span>
+            </Link>
+            <ul className="flex gap-6 items-center">
+              <li>
+                <Link href="/property-search" className="uppercase tracking-widest hover:underline">Property Search</Link>
+              </li>
+              <li>
+                <AuthButton />
+              </li>
             </ul>
           </nav>
           {children}

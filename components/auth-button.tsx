@@ -15,9 +15,10 @@ function AuthButton() {
         </div>
       }
       {!auth?.currentUser &&
-        <div>
-          <Link href="/login" >Login</Link>
-          <Link href="/signup" >SignUp</Link>
+        <div className="flex gap-2 items-center">
+          <Link className="uppercase hover:underline tracking-widest" href="/login" >Login</Link>
+          <div className="h-8 w-px bg-white/50"></div>
+          <Link className="uppercase hover:underline tracking-widest" href="/signup" >SignUp</Link>
         </div>
       }
     </div>

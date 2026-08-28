@@ -5,7 +5,7 @@ import { GoogleAuthProvider, signInWithPopup, User } from 'firebase/auth'
 import { createContext, ReactNode, useContext, useEffect, useState } from 'react'
 
 type AuthContextType = {
-  currentUser: User | null,
+  currentUser: User | null
   logout: () => Promise<void>
   loginWithGoogle: () => Promise<void>
 }
