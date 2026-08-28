@@ -2,9 +2,11 @@ import type { Metadata } from "next"
 import { Geist, Geist_Mono, Inter } from "next/font/google"
 import "./globals.css"
 import Link from 'next/link'
-import { cn } from "@/lib/utils";
+import { cn } from "@/lib/utils"
+import { AuthContextProvider } from '@/context/auth'
+import AuthButton from '@/components/auth-button'
 
-const inter = Inter({subsets:['latin'],variable:'--font-sans'});
+const inter = Inter({ subsets: ['latin'], variable: '--font-sans' })
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -28,18 +30,15 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       className={cn("h-full", "antialiased", geistSans.variable, geistMono.variable, "font-sans", inter.variable)}
     >
       <body className="min-h-full flex flex-col">
-        <nav className="bg-sky-950 text-white p-5 h-24 flex items-center justify-between">
-          <Link href="/">Fire Home</Link>
-          <ul>
-            <li>
-              <Link href="/login">Login</Link>
-            </li>
-            <li>
-              <Link href="/signup">Sign Up</Link>
-            </li>
-          </ul>
-        </nav>
-        {children}
+        <AuthContextProvider>
+          <nav className="bg-sky-950 text-white p-5 h-24 flex items-center justify-between">
+            <Link href="/">Fire Home</Link>
+            <ul>
+              <AuthButton />
+            </ul>
+          </nav>
+          {children}
+        </AuthContextProvider>
       </body>
     </html>
   )
