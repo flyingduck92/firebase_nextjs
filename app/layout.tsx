@@ -1,11 +1,13 @@
 import type { Metadata } from "next"
-import { Poppins } from "next/font/google"
+import { Poppins, Inter } from "next/font/google"
 import "./globals.css"
 import Link from 'next/link'
 import { cn } from "@/lib/utils"
 import { AuthContextProvider } from '@/context/auth'
 import AuthButton from '@/components/auth-button'
 import { HomeIcon } from 'lucide-react'
+
+const inter = Inter({subsets:['latin'],variable:'--font-sans'});
 
 const poppins = Poppins({
   subsets: ['latin'],
@@ -21,7 +23,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
-      className={cn("h-full", "antialiased", poppins.className, "font-sans")}
+      className={cn("h-full", "antialiased", poppins.className, "font-sans", inter.variable)}
     >
       <body className="min-h-full flex flex-col">
         <AuthContextProvider>
